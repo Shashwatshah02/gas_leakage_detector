@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "98603405648",
+    "project_id": "iot-gas-leakage",
+    "storage_bucket": "iot-gas-leakage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98603405648:android:b7717a5bf262f72825dc55",
+        "android_client_info": {
+          "package_name": "com.example.gas_leakage_detector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu9GQoOmkCTUrpgK_gRnSYLiEHBi97pyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
