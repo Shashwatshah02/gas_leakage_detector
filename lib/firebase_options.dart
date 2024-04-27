@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -44,37 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCbQ4NPv0F56sPlzMf4Y_73AIQgRYhRNl4',
-    appId: '1:98603405648:web:f0ae7b036b09c80825dc55',
-    messagingSenderId: '98603405648',
-    projectId: 'iot-gas-leakage',
-    authDomain: 'iot-gas-leakage.firebaseapp.com',
-    storageBucket: 'iot-gas-leakage.appspot.com',
+    apiKey: 'AIzaSyDF1HvOKGFcSYhIy1VvzC0X2Z3DBiS8KLk',
+    appId: '1:680846974193:web:8ea586bbcd9fd9dfb65d50',
+    messagingSenderId: '680846974193',
+    projectId: 'gas-leakage-f87ff',
+    authDomain: 'gas-leakage-f87ff.firebaseapp.com',
+    storageBucket: 'gas-leakage-f87ff.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAu9GQoOmkCTUrpgK_gRnSYLiEHBi97pyA',
-    appId: '1:98603405648:android:b7717a5bf262f72825dc55',
-    messagingSenderId: '98603405648',
-    projectId: 'iot-gas-leakage',
-    storageBucket: 'iot-gas-leakage.appspot.com',
+    apiKey: 'AIzaSyAN0ud17qCu7pMA4QfiMo_p385uzXwPcyc',
+    appId: '1:680846974193:android:365ee7563b3344d1b65d50',
+    messagingSenderId: '680846974193',
+    projectId: 'gas-leakage-f87ff',
+    storageBucket: 'gas-leakage-f87ff.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDK0Ts4qEHpwiDQi2_xoqVTxujFRBL3tAU',
-    appId: '1:98603405648:ios:61470727eb68bbf425dc55',
-    messagingSenderId: '98603405648',
-    projectId: 'iot-gas-leakage',
-    storageBucket: 'iot-gas-leakage.appspot.com',
+    apiKey: 'AIzaSyC_luE5xqNFa_KKBVUfXkUB2wRjmuHmkVs',
+    appId: '1:680846974193:ios:876001b84d1e21acb65d50',
+    messagingSenderId: '680846974193',
+    projectId: 'gas-leakage-f87ff',
+    storageBucket: 'gas-leakage-f87ff.appspot.com',
     iosBundleId: 'com.example.gasLeakageDetector',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDK0Ts4qEHpwiDQi2_xoqVTxujFRBL3tAU',
-    appId: '1:98603405648:ios:002c36a89449d7ff25dc55',
-    messagingSenderId: '98603405648',
-    projectId: 'iot-gas-leakage',
-    storageBucket: 'iot-gas-leakage.appspot.com',
-    iosBundleId: 'com.example.gasLeakageDetector.RunnerTests',
+    apiKey: 'AIzaSyC_luE5xqNFa_KKBVUfXkUB2wRjmuHmkVs',
+    appId: '1:680846974193:ios:876001b84d1e21acb65d50',
+    messagingSenderId: '680846974193',
+    projectId: 'gas-leakage-f87ff',
+    storageBucket: 'gas-leakage-f87ff.appspot.com',
+    iosBundleId: 'com.example.gasLeakageDetector',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDF1HvOKGFcSYhIy1VvzC0X2Z3DBiS8KLk',
+    appId: '1:680846974193:web:fe0a0dac452772f2b65d50',
+    messagingSenderId: '680846974193',
+    projectId: 'gas-leakage-f87ff',
+    authDomain: 'gas-leakage-f87ff.firebaseapp.com',
+    storageBucket: 'gas-leakage-f87ff.appspot.com',
+  );
+
 }
