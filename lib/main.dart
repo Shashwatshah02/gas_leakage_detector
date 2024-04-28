@@ -7,7 +7,7 @@ import 'package:gas_leakage_detector/firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(IPD());
+  runApp(const IPD());
 }
 
 class IPD extends StatelessWidget {
