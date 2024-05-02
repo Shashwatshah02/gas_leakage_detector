@@ -23,11 +23,13 @@ class _ControlPageState extends State<ControlPage> {
   List<String> imageUrls = [];
   bool torch1 = false;
   bool capture_img = false;
-  String temperature = '0';
+  // String temperature = '0';
 
-  late DocumentSnapshot docSnapshot;
-  bool isLoading = true;
+  // late DocumentSnapshot docSnapshot;
+  // bool isLoading = true;
   late Map<String, dynamic> firestoreData;
+  
+  get docSnapshot => null;
 
   @override
   void initState() {
@@ -47,8 +49,8 @@ class _ControlPageState extends State<ControlPage> {
         capture_img = firestoreData['click_image'];
         imageUrls = List<String>.from(firestoreData[
             'view_images']); // Assuming view_images is a List<String>
-        temperature = firestoreData['temp'];
-        isLoading = false;
+        // temperature = firestoreData['temp'];
+        // isLoading = false;
       });
     } catch (e) {
       log("Error getting document: $e");
@@ -73,9 +75,7 @@ class _ControlPageState extends State<ControlPage> {
             _fetchData();
           });
         },
-        child: isLoading
-            ? Center(child: CircularProgressIndicator())
-            : Container(
+        child: Container(
                 color: const Color(0xff51C3C9),
                 padding: const EdgeInsets.all(16.0),
                 child: GridView.count(
