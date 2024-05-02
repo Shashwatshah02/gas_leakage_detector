@@ -64,8 +64,8 @@ new_collection = database.collection("users")
 document = new_collection.document('pi')
 
 # Twilio Setup
-account_sid = 'AC78fec64218509a793241d1a18d6b1a98'
-auth_token = 'dae1d019406675166fdc7d11a672a333'
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 
 iterations = 0
