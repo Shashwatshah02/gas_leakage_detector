@@ -13,7 +13,7 @@ class LeakagePage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          valueToShow + 'V',
+          valueToShow.substring(0, valueToShow.length - 10) + ' V',
           style: TextStyle(
             fontSize: 48.0, // Adjust the font size as needed
             fontWeight: FontWeight.bold,

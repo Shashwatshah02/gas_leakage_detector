@@ -23,11 +23,12 @@ class _ControlPageState extends State<ControlPage> {
   List<String> imageUrls = [];
   bool torch1 = false;
   bool capture_img = false;
+  bool sms = false;
   String temperature = '0';
   String humidity = '0';
   String leakage = '0';
   String lat = '0';
-  String lng = '0';
+  String long = '0';
 
   // late DocumentSnapshot docSnapshot;
   // bool isLoading = true;
@@ -50,8 +51,10 @@ class _ControlPageState extends State<ControlPage> {
       log("Data fetched from Firestore successfully with firestoreData: $firestoreData");
       setState(() {
         torch1 = firestoreData['torch'];
+        sms = firestoreData['sms_enabled'];
         capture_img = firestoreData['click_image'];
-        imageUrls = List<String>.from(firestoreData['view_images']); // Assuming view_images is a List<String>
+        imageUrls = List<String>.from(firestoreData[
+            'view_images']); // Assuming view_images is a List<String>
         log("Image URLs: $imageUrls");
         print("Image URLs: ${imageUrls.runtimeType}");
 
@@ -59,17 +62,22 @@ class _ControlPageState extends State<ControlPage> {
         humidity = firestoreData['hum'];
         leakage = firestoreData['leakage'];
         lat = firestoreData['lat'];
-        lng = firestoreData['lng'];
+        long = firestoreData['long'];
       });
     } catch (e) {
       log("Error getting document: $e");
     }
   }
 
-  Future<void> _setData({bool? click_image, bool? torch}) async {
-    firestoreData['torch'] = torch ?? torch1;
-    firestoreData['click_image'] = click_image ?? capture_img;
-    document.set(firestoreData);
+  // ignore: non_constant_identifier_names
+  Future<void> _setData(
+      {bool? click_image, bool? torch, bool? sms_enabled}) async {
+    Map<String, dynamic> newData = {
+      'torch': torch ?? torch1,
+      'click_image': click_image ?? capture_img,
+      'sms_enabled': sms_enabled ?? sms,
+    };
+    document.update(newData);
   }
 
   @override
@@ -98,7 +106,11 @@ class _ControlPageState extends State<ControlPage> {
                 Icons.thermostat_rounded,
                 'Temperature',
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TemperaturePage(valueToShow: temperature)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              TemperaturePage(valueToShow: temperature)));
                 },
               ),
               _buildButton(
@@ -106,7 +118,11 @@ class _ControlPageState extends State<ControlPage> {
                 Icons.opacity_rounded,
                 'Humidity',
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HumidityPage(valueToShow: humidity)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              HumidityPage(valueToShow: humidity)));
                 },
               ),
               _buildButton(
@@ -114,7 +130,11 @@ class _ControlPageState extends State<ControlPage> {
                 Icons.warning_rounded,
                 'Check Gas Leakage',
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LeakagePage(valueToShow: leakage)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              LeakagePage(valueToShow: leakage)));
                 },
               ),
               _buildButton(
@@ -133,7 +153,11 @@ class _ControlPageState extends State<ControlPage> {
                 Icons.image_rounded,
                 'View Image',
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ImagePage(valueToShow: imageUrls)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ImagePage(valueToShow: imageUrls)));
                 },
               ),
               _buildButton(
@@ -157,7 +181,7 @@ class _ControlPageState extends State<ControlPage> {
                     MaterialPageRoute(
                       builder: (context) => LocationPage(
                         latValue: lat,
-                        lngValue: lng,
+                        lngValue: long,
                       ),
                     ),
                   );
@@ -165,10 +189,13 @@ class _ControlPageState extends State<ControlPage> {
               ),
               _buildButton(
                 context,
-                Icons.arrow_back_rounded,
-                'Back',
+                Icons.message,
+                'Send SMS',
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                  setState(() {
+                    sms = !sms;
+                    _setData(sms_enabled: sms);
+                  }); // Handle torch button press
                 },
               ),
             ],
@@ -178,7 +205,8 @@ class _ControlPageState extends State<ControlPage> {
     );
   }
 
-  Widget _buildButton(BuildContext context, IconData icon, String label, {void Function()? onPressed}) {
+  Widget _buildButton(BuildContext context, IconData icon, String label,
+      {void Function()? onPressed}) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(

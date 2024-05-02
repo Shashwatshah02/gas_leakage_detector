@@ -47,7 +47,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Set data to Firestore
-  Future<void> _setData({bool? forward, bool? backward, bool? left, bool? right}) async {
+  Future<void> _setData(
+      {bool? forward, bool? backward, bool? left, bool? right}) async {
     firestoreData['forward'] = forward ?? upOn;
     firestoreData['backward'] = backward ?? downOn;
     firestoreData['left'] = left ?? leftOn;
@@ -80,7 +81,8 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       'Welcome, Rachel Green',
                       style: GoogleFonts.arvo(
-                        textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
+                        textStyle: const TextStyle(
+                            fontSize: 25.0, color: Colors.white),
                       ),
                     ),
                   ],
@@ -91,7 +93,10 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(left: 260),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ControlPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ControlPage()));
                     },
                     child: const Text(
                       'Control Center',

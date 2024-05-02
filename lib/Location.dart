@@ -17,16 +17,16 @@ class LocationPage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Latitude :' + latValue,
+              'Latitude:' + latValue,
               style: TextStyle(
-                fontSize: 48.0, // Adjust the font size as needed
+                fontSize: 40.0, // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Longitude :' + lngValue,
+              'Longitude:' + lngValue,
               style: TextStyle(
-                fontSize: 48.0, // Adjust the font size as needed
+                fontSize: 40.0, // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
               ),
             ),
