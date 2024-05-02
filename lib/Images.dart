@@ -12,17 +12,18 @@ class ImagePage extends StatelessWidget {
         title: Text('Images'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: valueToShow.map((item) {
-            return Text(
-              item,
-              style: TextStyle(
-                fontSize: 48.0, // Adjust the font size as needed
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          }).toList(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (var i = 0; i < valueToShow.length; i++)
+                Image.network(
+                  valueToShow[i],
+                  width: 300,
+                  height: 300,
+                ),
+            ],
+          ),
         ),
       ),
     );
