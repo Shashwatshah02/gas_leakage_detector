@@ -10,6 +10,7 @@ import digitalio
 import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
+import requests
 
 
 ############# Setup Starts #############
@@ -175,6 +176,33 @@ def setGasQuality(gas):
     collection.document('leakage').set({'leakage': gas})
     return
 
+# Detect Gas Leakage using ML model
+def detectGasLeakage() -> str:
+    '''Returns `yes` if there is leakage, `no` otherwise.'''
+    result = instance.read()
+    temperature = float(result.temperature)
+    humidity = float(result.humidity)
+    lpg = float(str(chan.voltage))
+    leakage_value = "no"
+
+    api_url = f"https://miniature-xylophone-wxqrpj94596fqrv-8000.app.github.dev/predict-leakage?temperature={temperature}&humidity={humidity}&lpg={lpg}" 
+
+    try:
+        response = requests.get(api_url)
+
+        if response.status_code == 200:
+            prediction_data = response.json()
+            leakage_value = prediction_data["leakage"]
+
+            print(f"Leakage: {leakage_value}")
+            return leakage_value
+        else:
+            print(f"Error: API request failed with status code {response.status_code}")
+            return leakage_value
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return leakage_value
+
 
 iterations = 0
 # Main Loop
@@ -194,7 +222,8 @@ while True:
     
     setDistance(readDistance())
     readHumidityTemperature()
-    setGasQuality(readGasQuality())
+    readGasQuality()
+    setGasQuality(detectGasLeakage())
     
     iterations += 1
     print("Main Loop Ended:",iterations)
